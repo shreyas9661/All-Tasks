@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo list</title>
+    <style>
+        body {
+            border-top: 2px solid purple;
+            margin-top: 50px;
+            height: 75%;
+            width: 75%;
+        }
+        
+        .heading {
+            color: grey;
+            font-size: 20px;
+            align-content: left;
+            vertical-align: bottom;
+        }
+        
+        .p1 {
+            overflow-y: scroll;
+            max-height: 400px;
+        }
+        
+        .tl {
+            padding-left: 10px;
+            margin-bottom: 5px;
+        }
+        
+        .div1 {
+            background: yellow;
+            height: 30px;
+            width: 3px;
+        }
+        
+        .div10 {
+            background: white;
+            height: 30px;
+            width: 3px;
+        }
+        
+        .div11 {
+            background: #13b4ff;
+            height: 30px;
+            width: 3px;
+        }
+        
+        .div12 {
+            background: lightblue;
+            height: 30px;
+            width: 3px;
+        }
+        
+        .div13 {
+            background: lightgreen;
+            height: 30px;
+            width: 3px;
+        }
+        
+        .cal {
+            color: gray;
+        }
+        
+        .column1 {
+            display: flex;
+        }
+        
+        .columngap {
+            padding-left: 10px;
+        }
+        
+        .d3 {
+            font-size: small;
+            color: gray;
+        }
+        
+        .reg {
+            color: white;
+            background-color: red;
+            font-size: small;
+            font-weight: bold;
+            border-radius: 20%;
+        }
+        
+        .reg1 {
+            color: white;
+            background-color: darkgreen;
+            border-radius: 30%;
+            font-size: small;
+            font-weight: bold;
+            font-style: normal;
+        }
+        
+        .columngap1 {
+            width: 50px;
+            margin-left: 45px;
+        }
+        
+        .deleteicongap {
+            width: 10px;
+            margin-left: 30px;
+        }
+        
+        .columngap3 {
+            width: 20px;
+            margin-left: 160px;
+        }
+        
+        .columngap4 {
+            width: 50px;
+            margin-left: 100px;
+        }
+        
+        .bm {
+            float: right;
+            justify-content: flex-end;
+            position: sticky;
+            padding-right: 30px;
+            padding-top: 20px;
+        }
+        
+        .textcolumngap {
+            padding-left: 10px;
+            min-width: 1000px;
+        }
+    </style>
+    <script>
+        let oneRow;
+
+
+        function addNewTask() {
+            //alert("hello world")
+
+            //let taskCreatedBy = taskBy();
+
+            let inData = prompt("Task name?", 'Enter your next task!')
+            alert(inData);
+
+
+            oneRow = document.createElement('div');
+            oneRow.className = 'column1'; //<div class="column1"></div>
+
+
+            let colorBar = document.createElement('div');
+            colorBar.className = 'div1'; //<div class="div1"></div>
+            oneRow.appendChild(colorBar); //<div class="column1"><div class="div1"></div></div>
+
+
+            let boxx = document.createElement('span');
+            boxx.className = 'columngap'; //<div class="div1"></div>
+            boxx.innerHTML = '<input type="checkbox">'; //<input type="checkbox"> 
+            oneRow.appendChild(boxx);
+
+
+            let task = document.createElement('div');
+            task.className = 'textcolumngap';
+            let actTask = document.createElement('span')
+            actTask.className = 'cal';
+            actTask.innerText = inData;
+            task.appendChild(actTask);
+            oneRow.appendChild(task);
+
+
+            /*let name = Document.createElement('i');
+            name.className = 'd3';
+            name.innerText = taskCreatedBy;
+            oneRow.appendChild(name);*/
+
+
+            let tickButton = document.createElement('span');
+            tickButton.className = 'checkmarkgap';
+            tickButton.innerHTML = '<svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-check2"  fill = "green"            xmlns = "http://www.w3.org/2000/svg" ><path fill - rule = "evenodd" d = "M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" / ></svg>';
+            oneRow.appendChild(tickButton);
+
+
+            let deleteButton = document.createElement('span');
+            deleteButton.className = 'deleteicongap';
+            deleteButton.innerHTML = '<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="red" xmlns="http://www.w3.org/2000/svg"> <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" /><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" /></svg>';
+            oneRow.appendChild(deleteButton);
+
+
+            document.getElementById("container").appendChild(oneRow);
+            document.getElementById("container").appendChild(document.createElement('hr'));
+        }
+
+        function deleteRow() {
+            delete oneRow;
+        }
+
+        function taskBy() {
+            let taskBysList = ['Bob', 'John', 'Harry', 'Tida', 'Rocky'];
+            item = taskBysList[Math.floor(Math.random() * taskBysList.length)];
+            alert(item);
+        }
+    </script>
+</head>
+
+<body>
+
+    <h2 class="heading">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list-task" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="
+        -webkit-border-horizontal-spacing: inherit;
+         vertical-align: bottom;">
+            <path fill-rule="evenodd"
+                d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z">
+            </path>
+            <path
+                d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z">
+            </path>
+            <path fill-rule="evenodd"
+                d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z">
+            </path>
+
+        </svg>
+        <path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z" />
+        <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z" />
+        <path fill-rule="evenodd" d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z" />
+        </svg>
+        <span class="tl">Task Lists</span>
+    </h2>
+
+    <div class="p1" id="container">
+        <hr/>
+        <div class="column1">
+            <div class="div1"></div>
+            <span class="columngap"> <input type="checkbox"> </span>
+            <div class="textcolumngap">
+                <span class="cal">Call Sam for payments</span>
+                <span class="reg">Rejected </span>
+                <br><i class="d3">By Bob</i> </span>
+            </div>
+            <span class="checkmarkgap"><svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-check2"
+                    fill="green" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                </svg>
+            </span>
+            <span class="deleteicongap">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="red" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1
+                        .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1
+                        1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 
+                        1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                </svg>
+            </span>
+        </div>
+        <hr />
+        <div class="column1">
+            <div class="div10"></div>
+            <span class="columngap">
+                <input type="checkbox" />
+            </span>
+            <div class="textcolumngap">
+                <span class="cal">Make payments to Bluedart
+                </span><br><i class="d3">By Johnny</i><span class="reg1">New </span></span>
+            </div>
+            <span class="checkmarkgap"><svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-check2"
+                    fill="green" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1
+                         .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                </svg></span>
+            <span class="deleteicongap"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="red" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 
+                    .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1
+                     .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 
+                    1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 
+                    1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+            </svg></span>
+        </div>
+        <hr />
+        <div class="column1">
+            <div class="div11"></div> <span class="columngap"> <input type="checkbox"> </span>
+            <div class="textcolumngap"><span class="cal">
+                    Office rent&nbsp;&nbsp;&nbsp;&nbsp; <span class="reg"></span></span><br><i class="d3">By
+                    Samino</i></span>
+            </div>
+            <span class="checkmarkgap"><svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-check2"
+                    fill="green" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1
+                         .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                </svg></span>
+            <span class="deleteicongap"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="red" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 
+                    0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 
+                    0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1
+                     1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+            </svg></span>
+        </div>
+        <hr />
+        <div class="column1">
+            <div class="div12"></div> <span class="columngap"> <input type="checkbox"> </span>
+            <div class="textcolumngap"><span class="cal">Office Grocery shopping
+                    <span class="reg"> </span></span><br><i class="d3">By Tida</i></span>
+            </div>
+            <span class="checkmarkgap"><svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-check2"
+                    fill="green" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0
+                         1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                </svg></span>
+            <span class="deleteicongap"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="red" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5
+                     0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1
+                     0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1
+                      1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+            </svg></span>
+
+        </div>
+        <hr />
+        <div class="column1">
+            <div class="div13"></div> <span class="columngap"> <input type="checkbox"> </span>
+            <div class="textcolumngap">
+                <span class="cal">Ask for lunch to clients
+                    <span class="reg"></span>
+                </span>
+                <br>
+                <i class="d3">By Office Admin</i>
+                </span>
+            </div>
+            <span class="checkmarkgap"><svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-check2"
+                    fill="green" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 
+                        1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                </svg></span>
+            <span class="deleteicongap"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="red" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 
+                    .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 
+                    1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 
+                    1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+            </svg></span>
+        </div>
+
+        <hr/>
+
+    </div>
+    <div class="bm"><span class="cancel"><input type="submit" value="Cancel" style="
+        background:white;
+        padding: 10px;
+        color:blue;
+        border: none;
+        border-radius: 19px; 
+    "></span>
+
+        <span class="add"><input type="submit" value="Add Task" style="
+                    background-color: blue;
+                    
+                    color: white;
+                    font-weight: bold;
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-size: small;
+                    border:none;
+                    width: 80px;
+                    height: 40px;
+                    padding: 6px;
+                    border-radius: 20px;"onClick="addNewTask()">
+                    </span></div>
+    <br>
+
+</body>
+
+</html>
