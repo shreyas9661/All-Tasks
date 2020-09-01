@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            margin-top: 100px;
+            max-width: 162px;
+            background-color: white;
+            background-image: url(image2.jpg);
+            background-repeat: no-repeat;
+            background-size: 100% 300%;
+        }
+        
+        .heading {
+            font-family: Arial, Helvetica, sans-serif;
+            font-style: normal;
+            font-size: x-small;
+            padding: 8px;
+            border-style: solid;
+            color: white;
+            background-color: rgb(53, 221, 53);
+            align-content: center;
+            vertical-align: auto;
+            padding-left: 55px;
+            margin: 0px;
+            width: 96px;
+            font-weight: bold;
+            opacity: 0.8;
+            border-radius: 3px;
+        }
+        
+        .container {
+            box-shadow: 5px 5px silver;
+        }
+        
+        .colStyle {
+            width: 37px;
+            height: 35px;
+            border: none;
+            opacity: 0.7;
+        }
+        
+        .diffStyle {
+            width: 37px;
+            height: 35px;
+            border: none;
+            margin-top: 3px;
+            opacity: 0.8;
+        }
+    </style>
+    <script>
+        function appendNum(event) {
+
+            //alert(event.target.value);
+            num = event.target.value;
+            if (/[\=]/.test(form.displayResult.value)) {
+                form.displayResult.value = '';
+            }
+            form.displayResult.value = form.displayResult.value + num;
+        }
+
+        function deleteKey() {
+            form.displayResult.value = "";
+        }
+
+        function validate(event) {
+            let key = event.keyCode || event.which;
+            key = String.fromCharCode(key);
+            let regex = /[0-9]|[\+|\-|\*|\%|/|]/;
+            if (!regex.test(key)) {
+                event.returnValue = false;
+            }
+        }
+
+        function calculate(event) {
+
+            const result = eval(form.displayResult.value);
+            appendNum(event);
+            form.displayResult.value = form.displayResult.value + result;
+        }
+    </script>
+
+
+</head>
+
+<body>
+    <div class='container'>
+        <p class="heading">Calculator</p>
+
+        <form name="form">
+            <input type="text" name="displayResult" style="
+            width: 156px;
+            height: 50px;
+            border: none;
+            opacity: 0.5;
+        " id="textContent" onkeypress="validate(event)">
+
+            <div class="Numbers">
+                <span><input type="button" value="7" class="colStyle" onClick="appendNum(event)"></span>
+                <span><input type="button" value="8" class="colStyle" onClick="appendNum(event)"></span>
+                <span><input type="button" value="9" class="colStyle" onClick="appendNum(event)"></span>
+                <span><input type="button" value="/" class="colStyle" onClick="appendNum(event)"></span>
+            </div>
+
+            <div class="Numbers">
+                <span><input type="button" value="4" class="diffStyle" onClick="appendNum(event)"></span>
+                <span><input type="button" value="5" class="colStyle" onClick="appendNum(event)"></span>
+                <span><input type="button" value="6" class="colStyle" onClick="appendNum(event)"></span>
+                <span><input type="button" value="*" class="colStyle" onClick="appendNum(event)"></span>
+            </div>
+
+            <div class="Numbers">
+                <span><input type="button" value="1" class="diffStyle" onClick="appendNum(event)"></span>
+                <span><input type="button" value="2" class="colStyle" onClick="appendNum(event)"></span>
+                <span><input type="button" value="3" class="colStyle" onClick="appendNum(event)"></span>
+                <span><input type="button" value="-" class="colStyle" onClick="appendNum(event)"></span>
+            </div>
+
+            <div style="display:flex;">
+                <div>
+                    <div class="Numbers">
+                        <span><input type="button" value="0"
+                            style="width: 35px; height:35px; border: none; margin-top: 3px; opacity: 0.8;"
+                            onClick="appendNum(event)"></span>
+                        <span><input type="button" value="." style="width: 38px; height:35px; border: none;opacity: 0.8;"
+                            onClick="appendNum(event)"></span>
+                        <span><input type="button" value="%" style="width: 38px; height:35px; border: none;opacity: 0.8;"
+                            onClick="appendNum(event)" ></span>
+                    </div>
+
+                    <div class="Numbers">
+                        <span><input type="button" value="Del"
+                            style="width: 38px; height:35px; border: none;margin-top: 3px;background-color: rgb(243, 55, 55);color:white;opacity: 0.8;" onClick="
+                            deleteKey()">
+                    </span>
+                        <span><input type="button" value="="
+                            style="width: 77px; height:35px; border: none ; background-color: rgb(53, 221, 53); color:white; opacity: 0.8;" 
+                            onClick="calculate(event)">
+                    </span>
+
+                    </div>
+                </div>
+                <div> <span><input type="button" value="+"
+                        style="width: 38px; height:70px; border: none; margin-top: 3px;margin-top: 3px;margin-left:3px;opacity: 0.8;"
+                        onClick="appendNum(event)"></span>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>
