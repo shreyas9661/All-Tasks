@@ -126,7 +126,16 @@
             padding-left: 10px;
             min-width: 1000px;
         }
+        
+        .searchBar {
+            padding-left: 900px;
+        }
+        
+        .searchedText {
+            background-color: yellow;
+        }
     </style>
+
     <script>
         let oneRow;
 
@@ -157,8 +166,9 @@
 
             let task = document.createElement('div');
             task.className = 'textcolumngap';
-            let actTask = document.createElement('span')
+            let actTask = document.createElement('span');
             actTask.className = 'cal';
+            //actTask.name = 'tasks';
             actTask.innerText = inData;
             task.appendChild(actTask);
             oneRow.appendChild(task);
@@ -195,7 +205,36 @@
             item = taskBysList[Math.floor(Math.random() * taskBysList.length)];
             alert(item);
         }
+
+        function allSearch(event) {
+            //alert("xxx");
+            let prevSearch = document.getElementsByClassName('searchedText'); //d3 searchedText
+            //alert(prevSearch.length);
+            for (let j = 0; j < prevSearch.length; j++) {
+                //alert(j);
+                let elem = prevSearch[j].className.split(' '); //d3
+                //alert(elem[0]);
+                //alert(prevSearch[j].className);
+                prevSearch[j].className = elem[0];
+            }
+
+            let inValue = document.getElementById("txtContent").value;
+            //alert(inValue);
+
+            let taskValue = document.getElementsByName("tasks");
+            //alert(taskValue);
+
+            for (let i = 0; i < taskValue.length; i++) {
+                //alert(taskValue[i].innerText);
+                if (taskValue[i].innerText.includes(inValue)) {
+                    //alert(taskValue[i].className); // d3
+                    taskValue[i].className = taskValue[i].className + ' searchedText'; //d3 searchedText
+
+                }
+            }
+        }
     </script>
+
 </head>
 
 <body>
@@ -222,15 +261,18 @@
         <span class="tl">Task Lists</span>
     </h2>
 
+    <span class="searchBar" name="texValue"><input type="text" name= "texttext" id="txtContent" style="border-color: blue;" placeholder="Search.."></span>
+    <button type="submit" id="myInput" style="background-color: blue; font-weight: bold; color: white;border-color: blue;" onclick="allSearch(event)">Submit </button> </span>
+
     <div class="p1" id="container">
         <hr/>
         <div class="column1">
             <div class="div1"></div>
             <span class="columngap"> <input type="checkbox"> </span>
             <div class="textcolumngap">
-                <span class="cal">Call Sam for payments</span>
+                <span class="cal" name="tasks">Call Sam for payments</span>
                 <span class="reg">Rejected </span>
-                <br><i class="d3">By Bob</i> </span>
+                <br><i class="d3" name="tasks">By Bob</i> </span>
             </div>
             <span class="checkmarkgap"><svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-check2"
                     fill="green" xmlns="http://www.w3.org/2000/svg">
@@ -255,8 +297,8 @@
                 <input type="checkbox" />
             </span>
             <div class="textcolumngap">
-                <span class="cal">Make payments to Bluedart
-                </span><br><i class="d3">By Johnny</i><span class="reg1">New </span></span>
+                <span class="cal" name="tasks">Make payments to Bluedart
+                </span><br><i class="d3" name="tasks">By Johnny</i><span class="reg1">New </span></span>
             </div>
             <span class="checkmarkgap"><svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-check2"
                     fill="green" xmlns="http://www.w3.org/2000/svg">
@@ -275,8 +317,8 @@
         <hr />
         <div class="column1">
             <div class="div11"></div> <span class="columngap"> <input type="checkbox"> </span>
-            <div class="textcolumngap"><span class="cal">
-                    Office rent&nbsp;&nbsp;&nbsp;&nbsp; <span class="reg"></span></span><br><i class="d3">By
+            <div class="textcolumngap"><span class="cal" name="tasks">
+                    Office rent&nbsp;&nbsp;&nbsp;&nbsp; <span class="reg"></span></span><br><i class="d3" name="tasks">By
                     Samino</i></span>
             </div>
             <span class="checkmarkgap"><svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-check2"
@@ -295,8 +337,8 @@
         <hr />
         <div class="column1">
             <div class="div12"></div> <span class="columngap"> <input type="checkbox"> </span>
-            <div class="textcolumngap"><span class="cal">Office Grocery shopping
-                    <span class="reg"> </span></span><br><i class="d3">By Tida</i></span>
+            <div class="textcolumngap"><span class="cal" name="tasks">Office Grocery shopping
+                    <span class="reg"> </span></span><br><i class="d3" name="tasks">By Tida</i></span>
             </div>
             <span class="checkmarkgap"><svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-check2"
                     fill="green" xmlns="http://www.w3.org/2000/svg">
@@ -316,11 +358,11 @@
         <div class="column1">
             <div class="div13"></div> <span class="columngap"> <input type="checkbox"> </span>
             <div class="textcolumngap">
-                <span class="cal">Ask for lunch to clients
+                <span class="cal" name="tasks">Ask for lunch to clients
                     <span class="reg"></span>
                 </span>
                 <br>
-                <i class="d3">By Office Admin</i>
+                <i class="d3" name="tasks">By Office Admin</i>
                 </span>
             </div>
             <span class="checkmarkgap"><svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-check2"
@@ -346,6 +388,8 @@
         color:blue;
         border: none;
         border-radius: 19px; 
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
     "></span>
 
         <span class="add"><input type="submit" value="Add Task" style="
